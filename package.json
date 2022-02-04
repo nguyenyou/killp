@@ -6,5 +6,10 @@
   "license": "MIT",
   "bin": {
     "killp": "index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "gradient-string": "^2.0.0",
+    "ora": "^6.0.1"
   }
 }
