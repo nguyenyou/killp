@@ -1,11 +1,11 @@
 {
   "name": "killp",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "author": "tunguyen",
   "license": "MIT",
   "bin": {
-    "killp": "index.js"
+    "killp": "index.mjs"
   },
   "dependencies": {
     "chalk": "^5.0.0",
