@@ -18,15 +18,14 @@ const THANK_YOU = "Life is full of choices. Thanks for choosing me!"
 async function main() {
   if (!Array.isArray(ports) || ports.length === 0) return;
 
-  const spinner = ora(
-    `Goodbye: ${ports.map((p) => chalk.green(p)).join(", ")}`
-  ).start();
+  const message = `Goodbye: ${ports.map((p) => chalk.hex("FE9900")(p)).join(", ")}`
 
+  const spinner = ora(message).start();
   const jobs = ports.map((port) => exec(`lsof -i:${port} |xargs killall`));
   await Promise.all(jobs);
-
   spinner.succeed();
+
   console.log(chalk.bold(turboGradient(`\n>>> ${THANK_YOU}\n`)));
 }
 
-main();
+main().catch(console.error);
