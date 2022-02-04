@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 "use strict";
 
-import util from "util";
 import ora from "ora";
 import chalk from "chalk";
 import gradient from "gradient-string";
-import childProcess from "child_process";
-const exec = util.promisify(childProcess.exec);
+import {execSync} from "child_process";
+
+// const exec = util.promisify(childProcess.exec);
 
 const ports = process.argv;
 ports.shift();
@@ -17,12 +17,13 @@ const THANK_YOU = "Life is full of choices. Thanks for choosing me!"
 
 async function main() {
   if (!Array.isArray(ports) || ports.length === 0) return;
+  console.log(``)
 
   const message = `Goodbye: ${ports.map((p) => chalk.hex("FE9900")(p)).join(", ")}`
-
   const spinner = ora(message).start();
-  const jobs = ports.map((port) => exec(`lsof -i:${port} |xargs killall`));
-  await Promise.all(jobs);
+
+  ports.forEach((port) => execSync(`lsof -i:${port} | xargs killall`, {stdio : 'ignore' }));
+
   spinner.succeed();
 
   console.log(chalk.bold(turboGradient(`\n>>> ${THANK_YOU}\n`)));
