@@ -1,10 +1,14 @@
 {
   "name": "killp",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Kill ports",
   "main": "index.mjs",
   "author": "tunguyen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nguyenyou/killp.git"
+  },
   "bin": {
     "killp": "index.mjs"
   },
