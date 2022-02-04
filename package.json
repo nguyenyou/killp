@@ -1,6 +1,6 @@
 {
   "name": "killp",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Kill ports",
   "main": "index.mjs",
   "author": "tunguyen",
