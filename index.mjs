@@ -22,11 +22,13 @@ async function main() {
   const message = `Goodbye: ${ports.map((p) => chalk.hex("FE9900")(p)).join(", ")}`
   const spinner = ora(message).start();
 
-  ports.forEach((port) => execSync(`lsof -i:${port} | xargs killall`, {stdio : 'ignore' }));
-
-  spinner.succeed();
-
-  console.log(chalk.bold(turboGradient(`\n>>> ${THANK_YOU}\n`)));
+  try {
+    ports.forEach((port) => execSync(`lsof -i:${port} | xargs killall`, {stdio : 'ignore' }));
+    spinner.succeed();
+    console.log(chalk.bold(turboGradient(`\n>>> ${THANK_YOU}\n`)));
+  } catch {
+    spinner.fail("Looks like the process is belong to the root user, can't kill it.");
+  }
 }
 
-main().catch(console.error);
+main()
