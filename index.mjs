@@ -19,15 +19,15 @@ async function main() {
   if (!Array.isArray(ports) || ports.length === 0) return;
   console.log(``)
 
-  const message = `Goodbye: ${ports.map((p) => chalk.hex("FE9900")(p)).join(", ")}`
-  const spinner = ora(message).start();
+  const list = ports.map((p) => chalk.hex("FE9900")(p)).join(", ")
+  const spinner = ora(`Killing: ${list}`).start();
 
   try {
     ports.forEach((port) => execSync(`lsof -i:${port} | xargs killall`, {stdio : 'ignore' }));
-    spinner.succeed();
+    spinner.succeed(`Goodbye: ${list}`);
     console.log(chalk.bold(turboGradient(`\n>>> ${THANK_YOU}\n`)));
   } catch {
-    spinner.fail("Looks like the process is belong to the root user, can't kill it.");
+    spinner.fail("Looks like the process is belong to the root user, can't kill it.\n");
   }
 }
 
