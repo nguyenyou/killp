@@ -26,8 +26,9 @@ async function main() {
     ports.forEach((port) => execSync(`lsof -i:${port} | xargs killall`, {stdio : 'ignore' }));
     spinner.succeed(`Goodbye: ${list}`);
     console.log(chalk.bold(turboGradient(`\n>>> ${THANK_YOU}\n`)));
-  } catch {
-    spinner.fail("Looks like the process is belong to the root user, can't kill it.\n");
+  } catch(error) {
+    console.log(error)
+    spinner.fail("No matching processes belonging to you were found. Nothing is killed.\n");
   }
 }
 
