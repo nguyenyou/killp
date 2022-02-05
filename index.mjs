@@ -26,8 +26,7 @@ async function main() {
     ports.forEach((port) => execSync(`lsof -i:${port} | xargs killall`, {stdio : 'ignore' }));
     spinner.succeed(`Goodbye: ${list}`);
     console.log(chalk.bold(turboGradient(`\n>>> ${THANK_YOU}\n`)));
-  } catch(error) {
-    console.log(error)
+  } catch {
     spinner.fail("No matching processes belonging to you were found. Nothing is killed.\n");
   }
 }
