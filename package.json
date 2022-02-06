@@ -5,6 +5,7 @@
   "main": "index.mjs",
   "author": "tunguyen",
   "license": "MIT",
+  "packageManager": "pnpm@6.29.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/nguyenyou/killp.git"
