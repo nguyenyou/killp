@@ -23,7 +23,7 @@ async function main() {
   try {
     if (os.platform() === "win32") {
       for(let i = 0; i < ports.length; i++) {
-        const pid = await pidFromPort(port);
+        const pid = await pidFromPort(Number(ports[i]));
         execSync(`taskkill /pid ${pid} /f`);
       }
     } else {
